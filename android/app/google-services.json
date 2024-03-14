@@ -1,0 +1,116 @@
+{
+  "project_info": {
+    "project_number": "55324229630",
+    "project_id": "mkapp-a2b0c",
+    "storage_bucket": "mkapp-a2b0c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:55324229630:android:92b2df61a38408485a4aaf",
+        "android_client_info": {
+          "package_name": "com.tinasoft.mkapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "55324229630-59l36gkfe27fngsoqdlmipsc8ffuge7b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tinasoft.mkapp",
+            "certificate_hash": "b86fe4c347d5ec9cc1f269cf423713a661859a87"
+          }
+        },
+        {
+          "client_id": "55324229630-kiuvb6s0183j5gh3hqf0fue4rc5r24vj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tinasoft.mkapp",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "55324229630-5p0vvu7qo325hc3hqf41th2nvt57lntj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbjCnzpykyfmcLYGXAXjDbvtoV6ObAVzc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "55324229630-5p0vvu7qo325hc3hqf41th2nvt57lntj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "55324229630-cblqdq6j98eev716a4bp665v8r6nbuq5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "reactnativecore.example.com",
+                "app_store_id": "6443726422"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:55324229630:android:f208b2b9a5527cf25a4aaf",
+        "android_client_info": {
+          "package_name": "com.example.reactnativecore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "55324229630-6td1bqojmtt276kgiig26nga96engp81.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.reactnativecore",
+            "certificate_hash": "b86fe4c347d5ec9cc1f269cf423713a661859a87"
+          }
+        },
+        {
+          "client_id": "55324229630-j43s3d6u7vknbik9brne3odtev1dpft9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.reactnativecore",
+            "certificate_hash": "003fa8a222804da5a3924051c4cda9af6c961493"
+          }
+        },
+        {
+          "client_id": "55324229630-5p0vvu7qo325hc3hqf41th2nvt57lntj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbjCnzpykyfmcLYGXAXjDbvtoV6ObAVzc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "55324229630-5p0vvu7qo325hc3hqf41th2nvt57lntj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "55324229630-cblqdq6j98eev716a4bp665v8r6nbuq5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "reactnativecore.example.com",
+                "app_store_id": "6443726422"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

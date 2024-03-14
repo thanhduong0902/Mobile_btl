@@ -1,0 +1,159 @@
+import {getScreenWidth} from "../utils/layout/layout";
+
+// NAME
+const DB_NAME = "db_default";
+const STORE_NAME = "state";
+
+// VERSION
+const VERSION = {
+  ANDROID: "1.0.0",
+  IOS: "1.0.0",
+};
+
+export const draggingThreshold = getScreenWidth() * 0.01;
+export const heightHeaderBar = 47;
+
+// COLOR
+const COLOR_CONFIG = {
+  APPLE_ICON: "#23262F",
+  FACEBOOK_ICON: "#256BB3",
+  GOOGLE_ICON: "#E05347",
+  LINKEDIN_ICON: "#0274B3",
+  TWITTER_ICON: "#1CA1F1",
+  TRENDING_ICON: "#E25141",
+  LATEST_ICON: "#F25962",
+
+  CAROUSEL_GRADIENT_BOTTOM: "#1C78FF",
+  CAROUSEL_GRADIENT_TOP: "#63E59A",
+  SWITCH_TRACK_INACTIVE: "#767577",
+  SWITCH_TRACK_ACTIVE: "#81B0FF",
+  SWITCH_THUMB_ACTIVE: "#f5DD4B",
+  SWITCH_THUMB_INACTIVE: "#F4F3F4",
+  SHADOW: "#AFAFAF",
+  BORDER_SELECTED_VIEW_WEB: "#F4F4F4",
+  PICKER_SELECT: "#777E91",
+  CARD_OVER_LAY: "black",
+  PROGRESS_BAR: "#F9A825",
+  PROGRESS_DONE: "#3FA9F5",
+  PROGRESS_BAR_NONE: "#F4F4F4",
+
+  WHITE: "#FFF",
+  BLACK: "#000",
+  RED: "red",
+  BLUE: "blue",
+
+  LIGHT_PRIMARY_1: "#E25141",
+  LIGHT_SECONDARY_1: "#0053CC",
+  LIGHT_SECONDARY_2: "#00C076",
+  LIGHT_SECONDARY_3: "#E05347",
+  LIGHT_SECONDARY_4: "#E8A711",
+  LIGHT_SECONDARY_5: "#9757D7",
+  LIGHT_SECONDARY_6: "#F57040",
+  LIGHT_SECONDARY_7: "#70C270",
+  LIGHT_SECONDARY_8: "#1A70ED",
+
+  DARK_PRIMARY_1: "#E36B77",
+  DARK_SECONDARY_1: "#5873DE",
+  DARK_SECONDARY_2: "#6CAC9C",
+  DARK_SECONDARY_3: "#FA9384",
+  DARK_SECONDARY_4: "#8B9BF3",
+
+  NEUTRALS_2: "#23262F",
+  NEUTRALS_3: "#353945",
+  NEUTRALS_4: "#777E91",
+  NEUTRALS_5: "#B1B5C4",
+  NEUTRALS_6: "#E6E8EC",
+  NEUTRALS_7: "#F4F5F6",
+  NEUTRALS_8: "#FCFCFD",
+  NEUTRALS_9: "#FCFCFC",
+  NEUTRALS_10: "#B1B5C3",
+  NEUTRALS_11: "#D9D9D9",
+  NEUTRALS_12: "#F1F2F3",
+};
+
+// LAYOUT CONFIG
+const LAYOUT_CONFIG = {
+  HEIGHT_HEADER: 45,
+  PADDING_HORIZONTAL: 15,
+};
+
+// NETWORK
+const NETWORK_CONFIG = {
+  HOST: "http://server",
+  API_BASE_URL: "http://server/api",
+  TIMEOUT: 30000,
+  RETRY: false,
+  DISPLAY_ERROR: true,
+  USE_TOKEN: true,
+  USE_TOKEN_LIVE: false,
+  WITH_METADATA: false,
+};
+
+const THIRD_PARTY_LOGIN = {
+  GOOGLE: "string",
+  GOOGLE_IOS: "string",
+  FACEBOOK_APP_ID: "string",
+  FACEBOOK_CLIENT_TOKEN: "string",
+  FACEBOOK_APP_NAME: "string",
+  TWITTER_CONSUMER_KEY: "string",
+  TWITTER_CONSUMER_SECRET: "string",
+};
+
+const GGMAP_API_CONFIG = {
+  apiKey: "string",
+  apiGoong: "string",
+};
+
+const RESULT_CODE_MOMO_FAIL = [
+  "11",
+  "12",
+  "13",
+  "20",
+  "22",
+  "40",
+  "41",
+  "42",
+  "43",
+  "1001",
+  "1002",
+  "1003",
+  "1004",
+  "1005",
+  "1006",
+  "1007",
+  "1026",
+  "1080",
+  "1081",
+  "2001",
+  "2007",
+  "3001",
+  "3002",
+  "3003",
+  "3004",
+  "4001",
+  "4010",
+  "4011",
+  "4100",
+  "4015",
+  "10",
+  "99",
+];
+
+const RESULT_CODE_MOMO_SUCCESS = ["0", "9000"];
+
+const MASTER_KOREAN_VERSION = "Master Korean v1.0.5";
+
+export default {
+  DB_NAME,
+  STORE_NAME,
+  NETWORK_CONFIG,
+  COLOR_CONFIG,
+  VERSION,
+  draggingThreshold,
+  THIRD_PARTY_LOGIN,
+  GGMAP_API_CONFIG,
+  MASTER_KOREAN_VERSION,
+  RESULT_CODE_MOMO_FAIL,
+  RESULT_CODE_MOMO_SUCCESS,
+  LAYOUT_CONFIG,
+};
