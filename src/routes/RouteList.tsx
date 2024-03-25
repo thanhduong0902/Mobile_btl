@@ -9,6 +9,7 @@ import Members from "src/screens/FamilyTree/Members";
 import Event from "src/screens/Event/Event";
 import News from "../screens/News";
 import Acount from "src/screens/Account";
+import CreateNewsScreen from "src/screens/News/CreateNew";
 
 export type AppRootParamList = {
   LoginRoute: {param: {from: string}} | undefined;
@@ -75,6 +76,12 @@ const routes: IRoute[] = [
     name: "MembersRoute",
     title: "Thành viên",
   },
+  {
+    component: CreateNewsScreen,
+    name: "CreateNewRoute",
+    title: "Thêm tin mới",
+  },
+
 ];
 
 export default routes;

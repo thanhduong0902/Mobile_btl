@@ -1,16 +1,24 @@
-import { useNavigation } from "@react-navigation/native";
-import { use } from "i18next";
 import React from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 
-function LoginScreen() {
-  const navigation = useNavigation()
+function RegisterScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>Đăng nhập</Text>
+        <Text style={styles.headerText}>Đăng ký</Text>
       </View>
       <View style={styles.form}>
+        <TextInput
+          style={styles.input}
+          placeholder="Họ và tên"
+          placeholderTextColor="#999"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          placeholderTextColor="#999"
+          keyboardType="email-address"
+        />
         <TextInput
           style={styles.input}
           placeholder="Tên đăng nhập"
@@ -22,11 +30,11 @@ function LoginScreen() {
           placeholderTextColor="#999"
           secureTextEntry
         />
-        <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate("BottomTab") }>
-          <Text style={styles.loginButtonText}>Đăng nhập</Text>
-        </TouchableOpacity>
         <TouchableOpacity style={styles.registerButton}>
           <Text style={styles.registerButtonText}>Đăng ký</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.loginButton}>
+          <Text style={styles.loginButtonText}>Đăng nhập</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -59,29 +67,29 @@ const styles = StyleSheet.create({
     padding: 15,
     marginBottom: 20,
   },
-  loginButton: {
+  registerButton: {
     backgroundColor: "#D88249",
     borderRadius: 10,
     padding: 15,
     alignItems: "center",
-  },
-  loginButtonText: {
-    color: "white",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  registerButton: {
-    backgroundColor: "#C15213",
-    borderRadius: 10,
-    padding: 15,
-    alignItems: "center",
-    marginTop: 10,
   },
   registerButtonText: {
     color: "white",
     fontSize: 16,
     fontWeight: "bold",
   },
+  loginButton: {
+    backgroundColor: "#C15213",
+    borderRadius: 10,
+    padding: 15,
+    alignItems: "center",
+    marginTop: 10,
+  },
+  loginButtonText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
 });
 
-export default LoginScreen;
+export default RegisterScreen;

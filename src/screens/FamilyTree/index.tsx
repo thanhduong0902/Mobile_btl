@@ -75,7 +75,7 @@ function FamiyTree(): ReactElement {
             </TouchableOpacity>
           </View>
           <View style={styles.rowContent}>
-            <TouchableOpacity
+            <TouchableOpacity onPress={() => navigation.navigate("NewsRoute")}
               style={[
                 styles.buttonContain,
                 {

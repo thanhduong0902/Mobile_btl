@@ -77,7 +77,7 @@ function StackScreen(): ReactElement {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="StudyRoute"
+      initialRouteName="LoginRoute"
     >
       <StackNavigator.Screen name="BottomTab" component={BottomTabScreen} />
       {RouteList.map(({name, component, isBottom}) => {

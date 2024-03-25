@@ -13,7 +13,7 @@ function NewsScreen() {
           <Icon icon="back" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.headerText}>Bảng tin</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("CreateNewRoute")} style={styles.addButton}>
+        <TouchableOpacity onPress={() => {/* Xử lý logic khi nhấn nút tạo mới */}} style={styles.addButton}>
           <Icon icon="add" size={24} color="white" />
         </TouchableOpacity>
       </View>
