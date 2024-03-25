@@ -1,11 +1,13 @@
 // Screen
 import Login from "../screens/Auth/Login";
 import React, {ReactElement} from "react";
-import Live from "../screens/Live/Live";
+import Live from "../screens/Event/Event";
 import Job from "../screens/Job";
 
 // bottom navbar
 import Study from "../screens/Study";
+import FamiyTree from "src/screens/FamilyTree";
+import Event from "../screens/Event/Event";
 
 export type AppRootParamList = {
   LoginRoute: {param: {from: string}} | undefined;
@@ -38,16 +40,16 @@ const routes: IRoute[] = [
   },
   // bottom tab
   {
-    component: Study,
-    name: "StudyRoute",
-    title: "E-Learning",
-    icon: "e-computer",
+    component: FamiyTree,
+    name: "FamilyTreeRoute",
+    title: "Gia phả",
+    icon: "Tree",
     isBottom: true,
   },
   {
-    component: Live,
-    name: "LiveRoute",
-    title: "Live",
+    component: Event,
+    name: "EventRoute",
+    title: "Sự kiện",
     icon: "Latest_Icon",
     isBottom: true,
   },

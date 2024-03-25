@@ -1,7 +1,6 @@
 import React, {ReactElement} from "react";
-import {View} from "react-native";
+import {StyleSheet, View} from "react-native";
 import TextGlobal from "../TextGlobal";
-import styles from "src/styles/components/headers/HeaderMain";
 
 function HeaderMain(): ReactElement {
   return (
@@ -10,5 +9,11 @@ function HeaderMain(): ReactElement {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+  },
+});
 
 export default HeaderMain;

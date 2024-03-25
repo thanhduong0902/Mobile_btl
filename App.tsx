@@ -78,7 +78,7 @@ class App extends PureComponent {
         <Provider store={store}>
           <PersistGate loading={<LoadingPersisGate />} persistor={persistor}>
             <QueryClientProvider client={queryClient}>
-              <View className="flex-1">
+              <View style={{flex: 1}}>
                 <AppNavigator />
                 <FlashMessage position="top" style={{paddingRight: 40}} />
               </View>
