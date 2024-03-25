@@ -5442,7 +5442,7 @@
         ],
         "attrs": [
           {
-            "fill": "rgb(255, 165, 0)"
+            "fill": "currentColor"
           }
         ],
         "width": 1106,

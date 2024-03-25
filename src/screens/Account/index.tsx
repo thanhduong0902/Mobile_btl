@@ -2,7 +2,7 @@ import React, {ReactElement} from "react";
 import {View} from "react-native";
 import HeaderMain from "src/components/headers/HeaderMain";
 
-function Study(): ReactElement {
+function Acount(): ReactElement {
   return (
     <View>
       <HeaderMain />
@@ -10,4 +10,4 @@ function Study(): ReactElement {
   );
 }
 
-export default Study;
+export default Acount;

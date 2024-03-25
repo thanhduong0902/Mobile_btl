@@ -1,3 +1,4 @@
+import {useNavigation} from "@react-navigation/native";
 import React, {ReactElement} from "react";
 import {
   ScrollView,
@@ -7,17 +8,20 @@ import {
   View,
 } from "react-native";
 import {Button} from "react-native-elements";
+import StatusBar from "src/components/StatusBar";
 import config from "src/config";
 import Icon from "src/utils/Icon";
 
 function FamiyTree(): ReactElement {
+  const navigation = useNavigation();
   return (
     <View style={styles.root}>
+      <StatusBar />
       <View style={styles.header}>
         <Text style={styles.textHeader}>Gia phả</Text>
         <Button title="+ Tạo mới" buttonStyle={styles.addButton} />
       </View>
-      <ScrollView>
+      <ScrollView style={{paddingBottom: 50}}>
         <View style={styles.container}>
           <Text style={{fontSize: 16, fontWeight: "bold"}}>
             Gia đình Thanh Dương
@@ -43,7 +47,12 @@ function FamiyTree(): ReactElement {
           </View>
           <View style={styles.line} />
           <View>
-            <TouchableOpacity style={styles.buttonContain}>
+            <TouchableOpacity
+              style={styles.buttonContain}
+              onPress={() => {
+                navigation.navigate("MembersRoute");
+              }}
+            >
               <Text style={styles.textContent}>Danh sách thành viên</Text>
               <View style={styles.row}>
                 <Icon icon="Menu" size={20} color="white" style={styles.icon} />
@@ -131,6 +140,118 @@ function FamiyTree(): ReactElement {
             </TouchableOpacity>
           </View>
         </View>
+        <View style={styles.container}>
+          <Text style={{fontSize: 16, fontWeight: "bold"}}>
+            Gia đình Thanh Dương
+          </Text>
+          <View style={styles.rowContent}>
+            <View style={styles.row}>
+              <Icon icon="Teacher_2" size={12} color="black" />
+              <Text style={{paddingLeft: 10}}>2 Đời</Text>
+            </View>
+            <View style={styles.row}>
+              <Icon icon="Teacher_2" size={12} color="black" />
+              <Text style={{paddingLeft: 10}}>4 Thành viên</Text>
+            </View>
+            <View style={styles.row}>
+              <Icon icon="clock" size={12} color="black" />
+              <Text style={{paddingLeft: 10}}>25/03/2024</Text>
+            </View>
+          </View>
+          <View style={styles.line} />
+          <View style={styles.row}>
+            <Icon icon="candidate" size={30} />
+            <Text style={{paddingLeft: 10}}>Nguời tạo: Dương Đức Thanh</Text>
+          </View>
+          <View style={styles.line} />
+          <TouchableOpacity style={styles.buttonContain}>
+            <Text style={styles.textContent}>Danh sách thành viên</Text>
+            <View style={styles.row}>
+              <Icon icon="Menu" size={20} color="white" style={styles.icon} />
+              <Text style={styles.textContent}>Phả hệ</Text>
+            </View>
+          </TouchableOpacity>
+          <View>
+            <TouchableOpacity style={styles.buttonContain}>
+              <Text style={styles.textContent}>Sắp xếp phả đồ</Text>
+              <View style={styles.row}>
+                <Icon
+                  icon="Scale"
+                  size={20}
+                  color="white"
+                  style={styles.icon}
+                />
+                <Text style={styles.textContent}>Thiết kế phả đồ</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.rowContent}>
+            <TouchableOpacity
+              style={[
+                styles.buttonContain,
+                {
+                  width: "48%",
+                },
+              ]}
+            >
+              <Text style={styles.textContent}>Dòng thời gian</Text>
+              <View style={styles.row}>
+                <Icon icon="note" size={20} color="white" style={styles.icon} />
+                <Text style={styles.textContent}>Bảng tin</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.buttonContain,
+                {
+                  width: "48%",
+                },
+              ]}
+            >
+              <Text style={styles.textContent}>Ngày gia đình</Text>
+              <View style={styles.row}>
+                <Icon icon="day" size={20} color="white" style={styles.icon} />
+                <Text style={styles.textContent}>Sự kiện</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.rowContent}>
+            <TouchableOpacity
+              style={[
+                styles.buttonContain,
+                {
+                  width: "48%",
+                },
+              ]}
+            >
+              <Text style={styles.textContent}>Ảnh gia đình</Text>
+              <View style={styles.row}>
+                <Icon
+                  icon="Image"
+                  size={20}
+                  color="white"
+                  style={styles.icon}
+                />
+                <Text style={styles.textContent}>Album</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.buttonContain,
+                {
+                  width: "48%",
+                },
+              ]}
+            >
+              <Text style={styles.textContent}>Quản lí tài khoản</Text>
+              <View style={styles.row}>
+                <Icon icon="User" size={20} color="white" style={styles.icon} />
+                <Text style={styles.textContent}>Tài khoản</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={{height: 100}} />
       </ScrollView>
     </View>
   );

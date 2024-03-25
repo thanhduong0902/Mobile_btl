@@ -13,11 +13,7 @@ export default function StatusBar(): ReactElement {
         backgroundColor: Config.COLOR_CONFIG.NEUTRALS_9,
       }}
     >
-      <RNStatusBar
-        backgroundColor={Config.COLOR_CONFIG.NEUTRALS_9}
-        barStyle="light-content"
-        hidden
-      />
+      <RNStatusBar backgroundColor="#D2672A" barStyle="dark-content" />
     </View>
   );
 }

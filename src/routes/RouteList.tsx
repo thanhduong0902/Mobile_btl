@@ -1,16 +1,18 @@
 // Screen
 import Login from "../screens/Auth/Login";
 import React, {ReactElement} from "react";
-import Live from "../screens/Event/Event";
-import Job from "../screens/Job";
+import Job from "../screens/News";
 
 // bottom navbar
-import Study from "../screens/Study";
 import FamiyTree from "src/screens/FamilyTree";
-import Event from "../screens/Event/Event";
+import Members from "src/screens/FamilyTree/Members";
+import Event from "src/screens/Event/Event";
+import News from "../screens/News";
+import Acount from "src/screens/Account";
 
 export type AppRootParamList = {
   LoginRoute: {param: {from: string}} | undefined;
+  MembersRoute: undefined;
 };
 // This registers which makes navigation fully type-safe.
 // https://reactnavigation.org/docs/typescript#specifying-default-types-for-usenavigation-link-ref-etc
@@ -54,11 +56,24 @@ const routes: IRoute[] = [
     isBottom: true,
   },
   {
-    component: Job,
-    name: "JobRoute",
-    title: "Jobs",
+    component: News,
+    name: "NewsRoute",
+    title: "Tin tức",
     icon: "group_building",
     isBottom: true,
+  },
+  {
+    component: Acount,
+    name: "AccountRoute",
+    title: "Tài khoản",
+    icon: "User",
+    isBottom: true,
+  },
+  // screens
+  {
+    component: Members,
+    name: "MembersRoute",
+    title: "Thành viên",
   },
 ];
 
