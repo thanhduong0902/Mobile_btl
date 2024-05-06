@@ -1,15 +1,15 @@
-import axios, {AxiosError, AxiosRequestConfig, AxiosResponse} from "axios";
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import _ from "lodash";
 import Config from "../config";
-import store, {persistor} from "../redux/store";
-import {showError} from "../utils/notification";
+import store, { persistor } from "../redux/store";
+import { showError } from "../utils/notification";
 import ListErrorMessage from "./ErrorMessage/ListErrorMessage";
-import {IAccountInfo} from "./User/ApiUser";
-import perf, {FirebasePerformanceTypes} from "@react-native-firebase/perf";
-import {isIOS} from "../utils/device";
+import { IAccountInfo } from "./User/ApiUser";
+import perf, { FirebasePerformanceTypes } from "@react-native-firebase/perf";
+import { isIOS } from "../utils/device";
 import i18n from "i18next";
 import DeviceInfo from "react-native-device-info";
-import {loginUser, logoutUser} from "src/redux/slices/UserSlice";
+import { loginUser, logoutUser } from "src/redux/slices/UserSlice";
 
 export interface IDataError {
   errorCode: string;
@@ -34,7 +34,7 @@ export interface IResponseDTO<T> {
   errorCode: string;
   message?: string;
   meta?: IMetadata;
-  data?: T;
+  // data?: T;
 }
 
 interface IResponseWithMetadataDTO<T> {
@@ -54,7 +54,7 @@ interface IFetcherOptions {
 
 function displayError(dataError: IDataError): void {
   try {
-    const {errorCode} = dataError;
+    const { errorCode } = dataError;
     let errorMessage;
 
     const error = ListErrorMessage.find((dt) => dt.error_code === errorCode);
@@ -81,9 +81,9 @@ function handleRefreshToken(): Promise<boolean> {
       {
         url: "/auth/refresh-token",
         method: "post",
-        data: {refreshToken: store.getState().user?.refreshToken},
+        data: { refreshToken: store.getState().user?.refreshToken },
       },
-      {displayError: false}
+      { displayError: false }
     )
       .then((res) => {
         store.dispatch(loginUser(res));
@@ -137,160 +137,161 @@ export async function fetcher<T>(
   }
 
   // Log request for performance check
-  const httpMetric = perf().newHttpMetric(
-    config.url,
-    config.method.toUpperCase() as FirebasePerformanceTypes.HttpMethod
-  );
-  if (store.getState()?.user?.user?._id) {
-    httpMetric.putAttribute(
-      "userId",
-      store.getState().user.user?._id as string
-    );
-  }
-  await httpMetric.start();
+  // const httpMetric = perf().newHttpMetric(
+  //   config.url,
+  //   config.method.toUpperCase() as FirebasePerformanceTypes.HttpMethod
+  // );
+  // if (store.getState()?.user?.user?._id) {
+  //   httpMetric.putAttribute(
+  //     "userId",
+  //     store.getState().user.user?._id as string
+  //   );
+  // }
+  // await httpMetric.start();
 
   // log.debug(config);
 
   return new Promise<T>((resolve, reject) => {
     apiClient
-      .request<T, AxiosResponse<IResponseDTO<T>>>(config)
+      .request<T, AxiosResponse<any>>(config)
       .then(async (response) => {
         // log.debug(response.data);
 
-        httpMetric.setHttpResponseCode(response?.status ?? 222);
-        httpMetric.setResponseContentType(
-          response?.headers["content-type"] ?? null
-        );
+        // httpMetric.setHttpResponseCode(response?.status ?? 222);
+        // httpMetric.setResponseContentType(
+        //   response?.headers["content-type"] ?? null
+        // );
         // console.log(config.data);
-        if (response.data.success) {
-          if (response.data.data === undefined) {
-            const dataEmpty: IDataError = {
-              errorCode: "ERROR_EMPTY",
-              errorMessage: "Data is empty",
-            };
-            if (defaultOptions.displayError) {
-              displayError(dataEmpty);
-            }
-            httpMetric.putAttribute("errorCode", "ERROR???");
-            httpMetric.putAttribute("errorMessage", "Data is empty");
-            await httpMetric.stop();
-            reject(dataEmpty);
-            return;
-          }
-          await httpMetric.stop();
-          resolve(response.data.data);
+        if (response) {
+          console.log("data", response.data)
+          // if (response.data.data === undefined) {
+          //   const dataEmpty: IDataError = {
+          //     errorCode: "ERROR_EMPTY",
+          //     errorMessage: "Data is empty",
+          //   };
+          //   if (defaultOptions.displayError) {
+          //     displayError(dataEmpty);
+          //   }
+          //   httpMetric.putAttribute("errorCode", "ERROR???");
+          //   httpMetric.putAttribute("errorMessage", "Data is empty");
+          //   await httpMetric.stop();
+          //   reject(dataEmpty);
+          //   return;
+          // }
+          // await httpMetric.stop();
+          resolve(response.data);
           return;
         }
-        const dataError: IDataError = {
-          errorCode: response.data.errorCode,
-          errorMessage: response.data.message,
-        };
-        if (
-          dataError.errorCode === "NEWS000102" ||
-          dataError.errorCode === "JWT000201" ||
-          dataError.errorCode === "AUTH000220"
-        ) {
-          // Dispatch Login
-          store.dispatch(logoutUser());
-          if (defaultOptions.displayError) {
-            // TODO: Show dialog login
-          }
-        }
+        //   const dataError: IDataError = {
+        //     errorCode: response.data.errorCode,
+        //     errorMessage: response.data.message,
+        //   };
+        //   if (
+        //     dataError.errorCode === "NEWS000102" ||
+        //     dataError.errorCode === "JWT000201" ||
+        //     dataError.errorCode === "AUTH000220"
+        //   ) {
+        //     // Dispatch Login
+        //     store.dispatch(logoutUser());
+        //     if (defaultOptions.displayError) {
+        //       // TODO: Show dialog login
+        //     }
+        //   }
 
-        if (dataError?.errorCode === "AUTH000221") {
-          try {
-            const checkRefresh = await handleRefreshToken();
-            if (checkRefresh) {
-              const data = await fetcher<T>(config, options);
-              resolve(data);
-            } else {
-              httpMetric.putAttribute("errorCode", "AUTH000221");
-              httpMetric.putAttribute(
-                "errorMessage",
-                "Can't refresh access token"
-              );
-              // confirmLogout();
-              // Too many request refresh token cause the token invalid which will show this error
-              // store.dispatch(UserAction.userLogout());
-              // store.dispatch(RequiredAuthenticationAction.requiredLogin());
-            }
-            await httpMetric.stop();
-            return;
-          } catch (error) {
-            // confirmLogout();
-            store.dispatch(logoutUser());
-            // TODO: Show dialog login
-            httpMetric.putAttribute("errorCode", "AUTH000221");
-            httpMetric.putAttribute(
-              "errorMessage",
-              "Something is wrong after refresh access token"
-            );
-            await httpMetric.stop();
-            return;
-          }
-        }
+        //   if (dataError?.errorCode === "AUTH000221") {
+        //     try {
+        //       const checkRefresh = await handleRefreshToken();
+        //       if (checkRefresh) {
+        //         const data = await fetcher<T>(config, options);
+        //         resolve(data);
+        //       } else {
+        //         httpMetric.putAttribute("errorCode", "AUTH000221");
+        //         httpMetric.putAttribute(
+        //           "errorMessage",
+        //           "Can't refresh access token"
+        //         );
+        //         // confirmLogout();
+        //         // Too many request refresh token cause the token invalid which will show this error
+        //         // store.dispatch(UserAction.userLogout());
+        //         // store.dispatch(RequiredAuthenticationAction.requiredLogin());
+        //       }
+        //       await httpMetric.stop();
+        //       return;
+        //     } catch (error) {
+        //       // confirmLogout();
+        //       store.dispatch(logoutUser());
+        //       // TODO: Show dialog login
+        //       httpMetric.putAttribute("errorCode", "AUTH000221");
+        //       httpMetric.putAttribute(
+        //         "errorMessage",
+        //         "Something is wrong after refresh access token"
+        //       );
+        //       await httpMetric.stop();
+        //       return;
+        //     }
+        //   }
 
-        if (dataError?.errorMessage === "AUTH000220") {
-          // confirmLogout();
-          httpMetric.putAttribute("errorCode", "AUTH000220");
-          httpMetric.putAttribute("errorMessage", "Refresh token is expired");
-          await httpMetric.stop();
-          return;
-        }
+        //   if (dataError?.errorMessage === "AUTH000220") {
+        //     // confirmLogout();
+        //     httpMetric.putAttribute("errorCode", "AUTH000220");
+        //     httpMetric.putAttribute("errorMessage", "Refresh token is expired");
+        //     await httpMetric.stop();
+        //     return;
+        //   }
 
-        if (defaultOptions.displayError) {
-          displayError(dataError);
-        }
+        //   if (defaultOptions.displayError) {
+        //     displayError(dataError);
+        //   }
 
-        httpMetric.putAttribute("errorCode", dataError.errorCode);
-        httpMetric.putAttribute(
-          "errorMessage",
-          _.toString(dataError.errorMessage).substring(0, 100)
-        );
-        await httpMetric.stop();
-        reject(dataError);
-      })
-      .catch(async (error: Error | AxiosError) => {
-        if (axios.isAxiosError(error)) {
-          // Axios error
-          const somethingsWrong: IDataError = {
-            errorCode: "ERROR???",
-            errorMessage: "Somethings Wrong",
-          };
+        //   httpMetric.putAttribute("errorCode", dataError.errorCode);
+        //   httpMetric.putAttribute(
+        //     "errorMessage",
+        //     _.toString(dataError.errorMessage).substring(0, 100)
+        //   );
+        //   await httpMetric.stop();
+        //   reject(dataError);
+        // })
+        // .catch(async (error: Error | AxiosError) => {
+        //   if (axios.isAxiosError(error)) {
+        //     // Axios error
+        //     const somethingsWrong: IDataError = {
+        //       errorCode: "ERROR???",
+        //       errorMessage: "Somethings Wrong",
+        //     };
 
-          const dataError: IDataError =
-            error?.response?.data ?? somethingsWrong;
+        //     const dataError: IDataError =
+        //       error?.response?.data ?? somethingsWrong;
 
-          if (dataError?.errorCode === "AUTH3001.NotAuthenticated") {
-            persistor.purge();
-          } else {
-            if (defaultOptions.displayError) {
-              displayError(dataError);
-            }
-          }
-          httpMetric.putAttribute("errorCode", dataError.errorCode);
-          httpMetric.putAttribute(
-            "errorMessage",
-            _.toString(dataError.errorMessage).substring(0, 100)
-          );
-          httpMetric.setHttpResponseCode(error.response?.status ?? 888);
-          httpMetric.setResponseContentType(
-            error.response?.headers["content-type"] ?? null
-          );
-        } else {
-          // Native error
-          httpMetric.putAttribute("errorCode", "NATIVE");
-          httpMetric.putAttribute(
-            "errorMessage",
-            _.toString(error).substring(0, 100)
-          );
-          httpMetric.setHttpResponseCode(999);
-          httpMetric.setResponseContentType(null);
-          showError(_.toString(error));
-        }
+        //     if (dataError?.errorCode === "AUTH3001.NotAuthenticated") {
+        //       persistor.purge();
+        //     } else {
+        //       if (defaultOptions.displayError) {
+        //         displayError(dataError);
+        //       }
+        //     }
+        //     httpMetric.putAttribute("errorCode", dataError.errorCode);
+        //     httpMetric.putAttribute(
+        //       "errorMessage",
+        //       _.toString(dataError.errorMessage).substring(0, 100)
+        //     );
+        //     httpMetric.setHttpResponseCode(error.response?.status ?? 888);
+        //     httpMetric.setResponseContentType(
+        //       error.response?.headers["content-type"] ?? null
+        //     );
+        //   } else {
+        //     // Native error
+        //     httpMetric.putAttribute("errorCode", "NATIVE");
+        //     httpMetric.putAttribute(
+        //       "errorMessage",
+        //       _.toString(error).substring(0, 100)
+        //     );
+        //     httpMetric.setHttpResponseCode(999);
+        //     httpMetric.setResponseContentType(null);
+        //     showError(_.toString(error));
+        //   }
 
-        await httpMetric.stop();
-        return reject(error);
+        //   await httpMetric.stop();
+        //   return reject(error);
       });
   });
 }
@@ -298,7 +299,7 @@ export async function fetcher<T>(
 export async function fetcherWithMetadata<T>(
   config: AxiosRequestConfig,
   options: IFetcherOptions = {}
-): Promise<{data: T; meta: IMetadata}> {
+): Promise<{ data: T; meta: IMetadata }> {
   // Check if fetcher have url and method
   if (!config.url || !config.method) {
     throw new Error("There are no URL or method for API");
@@ -348,7 +349,7 @@ export async function fetcherWithMetadata<T>(
 
   // log.debug(config);
 
-  return new Promise<{data: T; meta: IMetadata}>((resolve, reject) => {
+  return new Promise<{ data: T; meta: IMetadata }>((resolve, reject) => {
     apiClient
       .request<T, AxiosResponse<IResponseWithMetadataDTO<T>>>(config)
       .then(async (response) => {

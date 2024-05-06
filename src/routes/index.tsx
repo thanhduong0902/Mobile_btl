@@ -1,17 +1,17 @@
-import React, {ReactElement, useCallback} from "react";
-import {NavigationContainer} from "@react-navigation/native";
-import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import React, { ReactElement, useCallback } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import RouteList from "./RouteList";
 import BottomTabContent from "./BottomTabContent";
-import {lightTheme} from "../themes/light";
-import {createStackNavigator} from "@react-navigation/stack";
-import {StackCardStyleInterpolator} from "@react-navigation/stack/lib/typescript/src/types";
-import {Animated} from "react-native";
+import { lightTheme } from "../themes/light";
+import { createStackNavigator } from "@react-navigation/stack";
+import { StackCardStyleInterpolator } from "@react-navigation/stack/lib/typescript/src/types";
+import { Animated } from "react-native";
 
 const customAnimation: {
   cardStyleInterpolator: StackCardStyleInterpolator;
 } = {
-  cardStyleInterpolator: ({current, next, inverted, layouts: {screen}}) => {
+  cardStyleInterpolator: ({ current, next, inverted, layouts: { screen } }) => {
     const progress = Animated.add(
       current.progress.interpolate({
         inputRange: [0, 1],
@@ -21,10 +21,10 @@ const customAnimation: {
 
       next
         ? next.progress.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, 1],
-            extrapolate: "clamp",
-          })
+          inputRange: [0, 1],
+          outputRange: [0, 1],
+          extrapolate: "clamp",
+        })
         : 0
     );
 
@@ -57,9 +57,9 @@ function BottomTabScreen(): ReactElement {
   const tabBar = useCallback((): ReactElement => <BottomTabContent />, []);
 
   return (
-    <BottomTab.Navigator tabBar={tabBar} screenOptions={{headerShown: false}}>
+    <BottomTab.Navigator tabBar={tabBar} screenOptions={{ headerShown: false }}>
       {RouteList.map(
-        ({name, component, isBottom}) =>
+        ({ name, component, isBottom }) =>
           isBottom && (
             // @ts-ignore
             <BottomTab.Screen name={name} component={component} key={name} />
@@ -77,10 +77,10 @@ function StackScreen(): ReactElement {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="LoginRoute"
+      initialRouteName="BottomTab"
     >
       <StackNavigator.Screen name="BottomTab" component={BottomTabScreen} />
-      {RouteList.map(({name, component, isBottom}) => {
+      {RouteList.map(({ name, component, isBottom }) => {
         if (!isBottom) {
           return (
             <StackNavigator.Screen

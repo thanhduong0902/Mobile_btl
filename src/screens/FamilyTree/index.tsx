@@ -1,5 +1,5 @@
-import {useNavigation} from "@react-navigation/native";
-import React, {ReactElement} from "react";
+import { useNavigation } from "@react-navigation/native";
+import React, { ReactElement, useEffect } from "react";
 import {
   ScrollView,
   StyleSheet,
@@ -7,13 +7,24 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import {Button} from "react-native-elements";
+import { Button } from "react-native-elements";
+import { useQuery } from "react-query";
+import ApiUser from "src/api/User/ApiUser";
+import Member from "src/api/User/Member";
 import StatusBar from "src/components/StatusBar";
 import config from "src/config";
 import Icon from "src/utils/Icon";
 
 function FamiyTree(): ReactElement {
   const navigation = useNavigation();
+  const { data: productsData, refetch } = useQuery({
+    queryKey: ['productShop'],
+    queryFn: () => {
+      return Member.getMember()
+    },
+    // keepPreviousData: true,
+  })
+  console.log("productData2", productsData)
   return (
     <View style={styles.root}>
       <StatusBar />
@@ -21,29 +32,29 @@ function FamiyTree(): ReactElement {
         <Text style={styles.textHeader}>Gia phả</Text>
         <Button title="+ Tạo mới" buttonStyle={styles.addButton} />
       </View>
-      <ScrollView style={{paddingBottom: 50}}>
+      <ScrollView style={{ paddingBottom: 50 }}>
         <View style={styles.container}>
-          <Text style={{fontSize: 16, fontWeight: "bold"}}>
+          <Text style={{ fontSize: 16, fontWeight: "bold" }}>
             Gia đình Thanh Dương
           </Text>
           <View style={styles.rowContent}>
             <View style={styles.row}>
               <Icon icon="Teacher_2" size={12} color="black" />
-              <Text style={{paddingLeft: 10}}>2 Đời</Text>
+              <Text style={{ paddingLeft: 10 }}>2 Đời</Text>
             </View>
             <View style={styles.row}>
               <Icon icon="Teacher_2" size={12} color="black" />
-              <Text style={{paddingLeft: 10}}>4 Thành viên</Text>
+              <Text style={{ paddingLeft: 10 }}>4 Thành viên</Text>
             </View>
             <View style={styles.row}>
               <Icon icon="clock" size={12} color="black" />
-              <Text style={{paddingLeft: 10}}>25/03/2024</Text>
+              <Text style={{ paddingLeft: 10 }}>25/03/2024</Text>
             </View>
           </View>
           <View style={styles.line} />
           <View style={styles.row}>
             <Icon icon="candidate" size={30} />
-            <Text style={{paddingLeft: 10}}>Nguời tạo: Dương Đức Thanh</Text>
+            <Text style={{ paddingLeft: 10 }}>Nguời tạo: Dương Đức Thanh</Text>
           </View>
           <View style={styles.line} />
           <View>
@@ -141,27 +152,27 @@ function FamiyTree(): ReactElement {
           </View>
         </View>
         <View style={styles.container}>
-          <Text style={{fontSize: 16, fontWeight: "bold"}}>
+          <Text style={{ fontSize: 16, fontWeight: "bold" }}>
             Gia đình Thanh Dương
           </Text>
           <View style={styles.rowContent}>
             <View style={styles.row}>
               <Icon icon="Teacher_2" size={12} color="black" />
-              <Text style={{paddingLeft: 10}}>2 Đời</Text>
+              <Text style={{ paddingLeft: 10 }}>2 Đời</Text>
             </View>
             <View style={styles.row}>
               <Icon icon="Teacher_2" size={12} color="black" />
-              <Text style={{paddingLeft: 10}}>4 Thành viên</Text>
+              <Text style={{ paddingLeft: 10 }}>4 Thành viên</Text>
             </View>
             <View style={styles.row}>
               <Icon icon="clock" size={12} color="black" />
-              <Text style={{paddingLeft: 10}}>25/03/2024</Text>
+              <Text style={{ paddingLeft: 10 }}>25/03/2024</Text>
             </View>
           </View>
           <View style={styles.line} />
           <View style={styles.row}>
             <Icon icon="candidate" size={30} />
-            <Text style={{paddingLeft: 10}}>Nguời tạo: Dương Đức Thanh</Text>
+            <Text style={{ paddingLeft: 10 }}>Nguời tạo: Dương Đức Thanh</Text>
           </View>
           <View style={styles.line} />
           <TouchableOpacity style={styles.buttonContain}>
@@ -251,7 +262,7 @@ function FamiyTree(): ReactElement {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={{height: 100}} />
+        <View style={{ height: 100 }} />
       </ScrollView>
     </View>
   );
