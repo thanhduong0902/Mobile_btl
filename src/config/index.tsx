@@ -1,4 +1,4 @@
-import {getScreenWidth} from "../utils/layout/layout";
+import { getScreenWidth } from "../utils/layout/layout";
 
 // NAME
 const DB_NAME = "db_default";
@@ -79,8 +79,8 @@ const LAYOUT_CONFIG = {
 
 // NETWORK
 const NETWORK_CONFIG = {
-  HOST: "http://server",
-  API_BASE_URL: "http://server/api",
+  HOST: "http://10.0.2.2:8080",
+  API_BASE_URL: "http://10.0.2.2:8080",
   TIMEOUT: 30000,
   RETRY: false,
   DISPLAY_ERROR: true,
