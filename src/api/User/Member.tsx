@@ -12,7 +12,6 @@ const path = {
 
 
 function getMember(): Promise<{ data: { member: IMember } }> {
-    console.log(1)
     return fetcher({
         url: path.member,
         method: "get"

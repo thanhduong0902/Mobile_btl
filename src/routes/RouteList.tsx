@@ -1,6 +1,6 @@
 // Screen
 import Login from "../screens/Auth/Login";
-import React, {ReactElement} from "react";
+import React, { ReactElement } from "react";
 import Job from "../screens/News";
 
 // bottom navbar
@@ -10,17 +10,22 @@ import Event from "src/screens/Event/Event";
 import News from "../screens/News";
 import Acount from "src/screens/Account";
 import CreateNewsScreen from "src/screens/News/CreateNew";
+import MemberDetail from "src/screens/FamilyTree/MemberDetail";
+import { MainMember } from "src/api/FamilyTree/ApiFamilyTree";
+import Album from "src/screens/Album/Album";
 
 export type AppRootParamList = {
-  LoginRoute: {param: {from: string}} | undefined;
-  MembersRoute: undefined;
+  LoginRoute: { param: { from: string } } | undefined;
+  MembersRoute: { idTree: number };
+  MemberDetailRoute: { id: number, data: MainMember },
+  AlbumRoute: { idTree: number }
 };
 // This registers which makes navigation fully type-safe.
 // https://reactnavigation.org/docs/typescript#specifying-default-types-for-usenavigation-link-ref-etc
 
 declare global {
   namespace ReactNavigation {
-    interface RootParamList extends AppRootParamList {}
+    interface RootParamList extends AppRootParamList { }
   }
 }
 
@@ -81,6 +86,16 @@ const routes: IRoute[] = [
     name: "CreateNewRoute",
     title: "Thêm tin mới",
   },
+  {
+    component: MemberDetail,
+    name: "MemberDetailRoute",
+    title: "Chi tiết thành viên"
+  },
+  {
+    component: Album,
+    name: "AlbumRoute",
+    title: "Anh gia dinh"
+  }
 
 ];
 

@@ -79,8 +79,9 @@ const LAYOUT_CONFIG = {
 
 // NETWORK
 const NETWORK_CONFIG = {
-  HOST: "http://10.0.2.2:8080",
-  API_BASE_URL: "http://10.0.2.2:8080",
+  HOST: "http://10.0.2.2:8080/api",
+  API_BASE_URL: "http://10.0.2.2:8080/api",
+  API_IMG_URL: "https://image-ecommerce.up.railway.app/api",
   TIMEOUT: 30000,
   RETRY: false,
   DISPLAY_ERROR: true,

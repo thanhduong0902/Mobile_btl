@@ -1,12 +1,13 @@
-import {StyleSheet} from "react-native";
+import { StyleSheet } from "react-native";
 import Config from "../../../config";
 
-const {WHITE} = Config.COLOR_CONFIG;
+const { WHITE } = Config.COLOR_CONFIG;
 
 export const styles = StyleSheet.create({
   modal: {
-    justifyContent: "flex-end",
+    justifyContent: "center",
     margin: 0,
+    alignItems: "center"
   },
   modalContent: {
     backgroundColor: WHITE,

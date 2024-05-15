@@ -22,7 +22,7 @@ function LoginScreen() {
           placeholderTextColor="#999"
           secureTextEntry
         />
-        <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate("BottomTab") }>
+        <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate("BottomTab")}>
           <Text style={styles.loginButtonText}>Đăng nhập</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.registerButton}>
